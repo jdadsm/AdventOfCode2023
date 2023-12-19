@@ -12,12 +12,10 @@ def main():
     for tile in possible_tiles:
         check,res = is_main_loop(input,starting_point,tile)
         if check:
-            print(tile)
             print(res)
             break
         
 def is_main_loop(input,starting_point,tile):
-    #input[starting_point[0]][starting_point[1]] = tile
     first1 = [starting_point[0],starting_point[1]]
     first2 = [starting_point[0],starting_point[1]]
     if tile == "|":
@@ -42,20 +40,12 @@ def is_main_loop(input,starting_point,tile):
     path2 = [starting_point,first2]
     while path1[-1] != path2[-1] and path1[-1] != None and path2[-1] != None:
         path1.append(get_next_point(input,path1[-2],path1[-1]))
-        path2.append(get_next_point(input,path2[-2],path2[-1]))
-    
-    print(tile)
-    print(path1)
-    print(path2)    
+        path2.append(get_next_point(input,path2[-2],path2[-1]))  
     
     if path1[-1] != None and path2[-1] != None:
         return True,len(path1)-1
     return False,None
     
-# last 1,1
-# curr 2,1
-# next 3,1
-# diff 1,0
 def get_next_point(input,last_point,current_point):
     current_tile = input[current_point[0]][current_point[1]]
     diff = current_point[0]-last_point[0],current_point[1]-last_point[1]
